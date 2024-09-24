@@ -1,0 +1,106 @@
+[
+   {
+      "name": "Surefoot International School",
+      "latitude": 4.9871,
+      "longitude": 8.3321,
+      "location": "Murtala Mohammed Highway, Ikot Efa, Calabar"
+    },
+    {
+      "name": "St. Anne’s Private School",
+      "latitude": 4.9805,
+      "longitude": 8.3369,
+      "location": "Calabar"
+    },
+    {
+      "name": "MaryGold International School",
+      "latitude": 4.9582,
+      "longitude": 8.3193,
+      "location": "Leopad Town, Calabar"
+    },
+    {
+      "name": "Duke Town School",
+      "latitude": 4.9730,
+      "longitude": 8.3352,
+      "location": "Anderson Street, Calabar"
+    },
+    {
+      "name": "Tender Hearts School",
+      "latitude": 4.9512,
+      "longitude": 8.3291,
+      "location": "Ekorinim, Calabar"
+    },
+    {
+      "name": "Florence Obi Academy",
+      "latitude": 4.9554,
+      "longitude": 8.3171,
+      "location": "Satellite Town, Calabar"
+    },
+    {
+      "name": "Hillcrest Schools",
+      "latitude": 4.9491,
+      "longitude": 8.3265,
+      "location": "Murtala Mohammed Highway, Calabar"
+    },
+    {
+      "name": "Nigerian Navy Primary School",
+      "latitude": 4.9801,
+      "longitude": 8.3400,
+      "location": "SPC Road, Ikot Ansa, Calabar"
+    },
+
+     {
+      "name": "Green Valley High School",
+      "latitude": 4.9456,
+      "longitude": 8.3250,
+      "location": "Marian Road, Calabar"
+    },
+    {
+      "name": "Bright Future Academy",
+      "latitude": 4.9622,
+      "longitude": 8.3302,
+      "location": "Etta Agbo Road, Calabar"
+    },
+    {
+      "name": "King's Heritage School",
+      "latitude": 4.9635,
+      "longitude": 8.3411,
+      "location": "Asari Eso Layout, Calabar"
+    },
+    {
+      "name": "Sunshine International School",
+      "latitude": 4.9478,
+      "longitude": 8.3154,
+      "location": "Federal Housing Estate, Calabar"
+    },
+
+    {
+      "name": "University of Calabar",
+      "latitude": 4.9506,
+      "longitude": 8.3269,
+      "location": "Etta Agbo Road, Calabar"
+    },
+    {
+      "name": "Cross River University of Technology",
+      "latitude": 4.9612,
+      "longitude": 8.3378,
+      "location": "Ekpo Abasi Street, Calabar"
+    },
+    {
+      "name": "Calabar Polytechnic",
+      "latitude": 4.9435,
+      "longitude": 8.3294,
+      "location": "Marian Road, Calabar"
+    },
+    {
+      "name": "West African People's University",
+      "latitude": 4.9460,
+      "longitude": 8.3405,
+      "location": "Asari Eso Layout, Calabar"
+    },
+    {
+      "name": "Niger Delta University",
+      "latitude": 4.9458,
+      "longitude": 8.3280,
+      "location": "Federal Housing Estate, Calabar"
+    }
+]

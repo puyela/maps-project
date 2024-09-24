@@ -1,41 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import schoolimage from '../assets/img/emmages- (3).jpg'; // Correct image path
-import teamone from '../assets/img/team_1.jpg'; // Use the correct filename
-import teamtwo from '../assets/img/team_2.jpg'; // Use the correct filename
-import teamthree from '../assets/img/team_3.jpg'; // Use the correct filename
-
+import { Link, useNavigate } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
+import schoolimage from '../assets/img/emmages- (3).jpg';
+import teamone from '../assets/img/team_1.jpg';
+import teamtwo from '../assets/img/team_2.jpg';
+import goalone from '../assets/img/emmages- (1).jpg';
+import goaltwo from '../assets/img/emmages- (2).jpg';
 
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleScroll = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setIsOpen(false); // Close menu after clicking
+  };
+
   return (
     <div className="min-h-screen flex flex-col overflow-hidden">
-      <header className="bg-gradient-to-r from-green-500 to-indigo-500 text-white p-4 shadow-lg">
-        <nav className="navbar bg-base-100 shadow-md">
-          <div className="flex-1">
-            <a className="text-gray-700 normal-case font-bold text-4xl" href="/">Edu Mappr</a>
-          </div>
-          <div className="flex-none">
-            <ul className="menu menu-horizontal px-1 space-x-4 font-bold">
-              <li>
-                <Link to="/" className="btn">Home</Link>
-              </li>
-              <li>
-                <Link to="/about" className="btn">About Us</Link>
-              </li>
-              <li>
-                <Link to="/map" className="btn btn-primary">View Map</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+      {/* Header */}
+      <header className="bg-gradient-to-r from-green-500 to-indigo-500 text-white shadow-lg">
+        <div className="container mx-auto p-4 flex justify-between items-center">
+          <a className="text-gray-700 normal-case font-bold text-3xl" href="/">Edu Mappr</a>
+
+          {/* Hamburger Icon */}
+          <button className="lg:hidden text-white text-3xl" onClick={toggleMenu}>
+            <FaBars />
+          </button>
+
+          {/* Navigation Menu (Centered) */}
+          <nav className="hidden lg:flex justify-center flex-1 space-x-8">
+            <button
+              onClick={() => handleScroll('home-section')}
+              className="btn btn-ghost text-white px-4 py-2 rounded hover:bg-white hover:text-green-500 transition-all duration-300"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => handleScroll('about-section')}
+              className="btn btn-ghost text-white px-4 py-2 rounded hover:bg-white hover:text-green-500 transition-all duration-300"
+            >
+              About Us
+            </button>
+          </nav>
+        </div>
+
+        {/* Hamburger Menu for Small Screens */}
+        <motion.div
+          className="lg:hidden flex flex-col bg-gray-900 p-6 space-y-4 absolute top-16 left-0 right-0 z-50"
+          initial={{ opacity: 0, y: '-100%' }}
+          animate={isOpen ? { opacity: 1, y: '0%' } : { opacity: 0, y: '-100%' }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <button
+            onClick={() => handleScroll('home-section')}
+            className="text-white text-lg px-4 py-2 rounded hover:bg-gray-700 transition duration-300"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => handleScroll('about-section')}
+            className="text-white text-lg px-4 py-2 rounded hover:bg-gray-700 transition duration-300"
+          >
+            About Us
+          </button>
+        </motion.div>
       </header>
 
-      <main className="flex-grow flex items-center gap-x-32 justify-between p-8 max-w-7xl mx-auto relative">
+      {/* Home Section */}
+      <section id="home-section" className="flex-grow flex flex-col-reverse md:flex-row items-center justify-between gap-x-10 p-8 max-w-7xl mx-auto relative">
         {/* Text Section */}
-         <div className="flex-1">
+        <div className="flex-1 text-center md:text-left">
           <motion.h2
-            className="text-6xl font-bold text-neutral mb-4"
+            className="text-4xl md:text-6xl font-bold text-neutral mb-4"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -43,76 +85,138 @@ const Home = () => {
             Welcome to the EDU MAPPR
           </motion.h2>
           <motion.p
-            className="text-2xl text-neutral mb-8"
+            className="text-lg md:text-2xl text-neutral mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Discover schools in your area with our interactive map. Our platform provides up-to-date information about local educational institutions, helping you make informed decisions for your child's education.
+            Discover schools in your area with our interactive map.
           </motion.p>
-          <Link to="/map" className="btn bg-gradient-to-r from-green-500 to-indigo-500 text-white px-6 py-2 rounded hover:bg-opacity-80 transition duration-300 mb-8">
-            Explore
-          </Link>
+          <button
+            onClick={() => navigate('/map')}
+            className="btn relative bg-gradient-to-r from-green-500 to-indigo-500 text-white px-6 py-2 rounded hover:bg-opacity-80 transition duration-300 mb-8 shadow-lg overflow-hidden"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-transparent opacity-30 animate-glitter"></span>
+            <span className="relative z-10">Explore Map</span>
+          </button>
         </div>
 
-
         {/* Image Section */}
-        <div className="flex-1 relative overflow-hidden">
+        <div className="flex-1 relative overflow-hidden mb-8 md:mb-0">
           <motion.img
             src={schoolimage}
             alt="School Kid"
-            className="w-full h-auto rounded-[30px] shadow-2xl translate-x-1/2"
+            className="w-full h-auto rounded-[30px] shadow-2xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           />
         </div>
-      </main>
-
-      {/* About Us Section */}
-      <section className="bg-gray-100 p-8">
-        <h3 className="text-4xl font-bold text-center mb-4">About Us</h3>
-        <p className="text-xl text-center mb-8">
-          At School Locator, we believe that every child deserves access to quality education. Our mission is to bridge the gap between parents and educational institutions, providing resources and information to help you find the best schools for your needs. Join us in making education accessible for everyone!
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Team Member 1 */}
-          <div className="flex flex-col items-center">
-            <motion.img
-              src={teamone}
-              alt="Team Member 1"
-              className="w-full rounded-lg shadow-md mb-4"
-            />
-            <h4 className="text-xl font-bold">Team Member 1</h4>
-            <p className="text-center">Role: Description about the team member.</p>
-          </div>
-          {/* Team Member 2 */}
-          <div className="flex flex-col items-center">
-            <motion.img
-              src={teamtwo}
-              alt="Team Member 2"
-              className="w-full rounded-lg shadow-md mb-4"
-            />
-            <h4 className="text-xl font-bold">Team Member 2</h4>
-            <p className="text-center">Role: Description about the team member.</p>
-          </div>
-          {/* Team Member 3 */}
-          <div className="flex flex-col items-center">
-            <motion.img
-              src={teamthree}
-              alt="Team Member 3"
-              className="w-full rounded-lg shadow-md mb-4"
-            />
-            <h4 className="text-xl font-bold">Team Member 3</h4>
-            <p className="text-center">Role: Description about the team member.</p>
-          </div>
-        </div>
       </section>
 
+      {/* About Us Section */}
+      <section id="about-section" className="bg-gray-100 p-8">
+        <motion.h3
+          className="text-4xl font-bold text-center mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          About Us
+        </motion.h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {/* Image 1 */}
+          <motion.div
+            className="flex items-center justify-center relative h-64 rounded-lg overflow-hidden shadow-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.img
+              src={goalone}
+              alt="Goal Image 1"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
 
-      <footer className="footer p-4 bg-gray-800 justify-center text-white text-center">
-        <p>© 2024 Digital Nigeria</p>
-      </footer>
+          {/* Image 2 */}
+          <motion.div
+            className="flex items-center justify-center relative h-64 rounded-lg overflow-hidden shadow-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.img
+              src={goaltwo}
+              alt="Goal Image 2"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
+
+        {/* Goals Section */}
+        <motion.h4
+          className="text-3xl font-bold text-center mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Goals
+        </motion.h4>
+        <motion.p
+          className="text-xl text-center mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our goal is to provide easy access to education resources and help families connect with the best educational institutions in their area.
+        </motion.p>
+      </section>
+
+      {/* Team Section */}
+      <section className="bg-gray-100 p-8">
+        <motion.h3
+          className="text-4xl font-bold text-center mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          TEAM
+        </motion.h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Team Member 1 */}
+          <motion.div
+            className="flex flex-col items-center lg:items-start"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <img
+              src={teamone}
+              alt="Team Member 1"
+              className="w-full lg:w-3/4 rounded-lg shadow-2xl mb-4"
+            />
+            <h4 className="text-xl font-bold">Team Member 1</h4>
+            <p className="text-center lg:text-left">Role: Description about the team member.</p>
+          </motion.div>
+
+          {/* Team Member 2 */}
+          <motion.div
+            className="flex flex-col items-center lg:items-start"
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <img
+              src={teamtwo}
+              alt="Team Member 2"
+              className="w-full lg:w-3/4 rounded-lg shadow-2xl mb-4"
+            />
+            <h4 className="text-xl font-bold">Team Member 2</h4>
+            <p className="text-center lg:text-left">Role: Description about the team member.</p>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
